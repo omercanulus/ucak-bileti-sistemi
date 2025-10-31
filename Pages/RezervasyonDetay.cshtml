@@ -1,0 +1,32 @@
+@page
+@model UcakBiletiSistemi.Pages.RezervasyonDetayModel
+@{
+    ViewData["Title"] = "Rezervasyon Onay";
+}
+
+<div class="container mt-5 text-center">
+    @if (Model.RezervasyonDetay != null)
+    {
+        <h1 class="text-success">✅ Rezervasyonunuz Başarıyla Tamamlandı!</h1>
+        <p class="lead">Bilet bilgileriniz aşağıdadır. Lütfen Rezervasyon ID'nizi not ediniz.</p>
+
+        <div class="card mx-auto" style="max-width: 500px;">
+            <div class="card-header bg-primary text-white">
+                Rezervasyon Detayları
+            </div>
+            <ul class="list-group list-group-flush text-start">
+                <li class="list-group-item"><strong>Rezervasyon Kodu (ID):</strong> @Model.RezervasyonDetay.RezervasyonID</li>
+                <li class="list-group-item"><strong>Yolcu Adı Soyadı:</strong> @Model.RezervasyonDetay.YolcuAdSoyad</li>
+                <li class="list-group-item"><strong>Seçilen Koltuk:</strong> @Model.RezervasyonDetay.KoltukNo</li>
+                <li class="list-group-item"><strong>Durum:</strong> @Model.RezervasyonDetay.Durum</li>
+                <li class="list-group-item"><strong>Ödenen Tutar:</strong> @Model.RezervasyonDetay.OdemeTutari TL</li>
+            </ul>
+        </div>
+
+        <a href="/" class="btn btn-info mt-4">Ana Sayfaya Dön</a>
+    }
+    else
+    {
+         <div class="alert alert-danger">Rezervasyon bilgisi bulunamadı.</div>
+    }
+</div>

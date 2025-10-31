@@ -1,0 +1,50 @@
+@page
+@model UcakBiletiSistemi.Pages.RezervasyonYapModel
+@{
+    ViewData["Title"] = "Rezervasyon Yap";
+}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Bilet ve Yolcu Bilgileri</h1>
+
+    @if (Model.SecilenUcus != null)
+    {
+        <div class="card mb-4 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">Seçilen Uçuş: @Model.SecilenUcus.KalkisSehri -> @Model.SecilenUcus.VarisSehri</h5>
+                <p class="card-text">
+                    <strong>Tarih/Saat:</strong> @Model.SecilenUcus.KalkisTarihi.ToString("dd/MM/yyyy HH:mm")<br>
+                    <strong>Temel Fiyat:</strong> @Model.SecilenUcus.AnaFiyat TL<br>
+                    <strong>Boş Koltuk:</strong> @Model.SecilenUcus.BosKoltukSayisi adet
+                </p>
+            </div>
+        </div>
+        
+        @if (!string.IsNullOrEmpty(Model.Mesaj))
+        {
+            <div class="alert alert-danger">@Model.Mesaj</div>
+        }
+
+        <form method="post">
+            <input type="hidden" asp-for="UcusId" /> 
+
+            <h3>Yolcu ve Koltuk Bilgileri</h3>
+
+            <div class="mb-3">
+                <label for="yolcu" class="form-label">Adınız ve Soyadınız:</label>
+                <input type="text" asp-for="YolcuAdSoyad" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="koltuk" class="form-label">Koltuk Numarası (Örn: 12A):</label>
+                <input type="text" asp-for="KoltukNo" class="form-control" required>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg">Rezervasyon Onayla ve Bilet Al</button>
+        </form>
+    }
+    else
+    {
+        <div class="alert alert-warning">Uçuş bilgisi bulunamadı. Lütfen ana sayfadan tekrar arama yapınız.</div>
+    }
+</div>

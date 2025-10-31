@@ -1,0 +1,48 @@
+@page
+@model UcakBiletiSistemi.Pages.AdminUcusEkleModel
+@{
+    // Bu kısım, sayfanın tarayıcı sekmesinde görünen başlığıdır.
+    ViewData["Title"] = "Admin - Uçuş Ekle";
+}
+
+<div class="container mt-5">
+    <h1>Yeni Uçuş Ekleme Paneli</h1>
+
+    @if (!string.IsNullOrEmpty(Model.Mesaj))
+    {
+        <div class="alert alert-success">
+            @Model.Mesaj
+        </div>
+    }
+
+    <form method="post">
+
+        <div class="mb-3">
+            <label for="kalkis" class="form-label">Kalkış Şehri:</label>
+            <input type="text" asp-for="YeniUcus.KalkisSehri" class="form-control" required>
+        </div>
+
+
+        <div class="mb-3">
+            <label for="varis" class="form-label">Varış Şehri:</label>
+            <input type="text" asp-for="YeniUcus.VarisSehri" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="tarih" class="form-label">Kalkış Tarihi:</label>
+            <input type="date" asp-for="YeniUcus.KalkisTarihi" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="kapasite" class="form-label">Kapasite:</label>
+            <input type="number" asp-for="YeniUcus.Kapasite" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="fiyat" class="form-label">Temel Fiyat:</label>
+            <input type="number" asp-for="YeniUcus.AnaFiyat" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Uçuşu Sisteme Ekle</button>
+    </form>
+</div>
